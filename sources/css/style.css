@@ -48,6 +48,7 @@ nav ul li a{
     border-bottom-left-radius: 1em;
     border-bottom-right-radius: 1em;
     transition: background-color 0.7s linear 0s;
+    color: black;
 }
 nav ul li a:hover{
     background: #fff5fb;
