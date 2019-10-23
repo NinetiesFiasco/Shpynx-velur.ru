@@ -32,11 +32,8 @@ nav ul{
     margin: auto;
 }
 nav ul li{
-    display: inline-block;
-}
-nav ul li a{
     text-decoration: none;
-    display: block;
+    display: inline-block;
     width: 200px;
     text-align: center;
     padding-top: 0.25em;
@@ -49,15 +46,16 @@ nav ul li a{
     border-bottom-right-radius: 1em;
     transition: background-color 0.7s linear 0s;
     color: black;
+    cursor: pointer;
 }
-nav ul li a:hover{
+nav ul li:hover{
     background: #fff5fb;
 }
-nav ul li a:active{
+nav ul li:active{
     background: red;
     color: inherit;
 }
-nav ul li a[data-selected=true]{
+nav ul li[data-selected=true]{
     background:  #ffe8f5;
 }
 /*

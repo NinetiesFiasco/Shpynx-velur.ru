@@ -1,7 +1,19 @@
 $(function(){
-    var pathArray = window.location.pathname.split('/');
+    $lis = $("nav>ul>li");
+    
+    $lis.click(function(){
+        $lis.attr("data-selected","false");
+        $that=$(this);
+        $that.attr("data-selected","true");
 
-    if (2<=pathArray.length){
-        $("a[href='"+pathArray[1]+"']").attr("data-selected","true");
-    }
+        
+        $.ajax({
+            url: $that.attr("data-restRequest")
+        }).done(function(data){
+            $("#restBody").html(data+"<br/>");
+        });        
+    });
+    
+    $lis.first().trigger("click");
+
 });
