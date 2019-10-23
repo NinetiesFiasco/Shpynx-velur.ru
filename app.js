@@ -3,9 +3,38 @@
 * добавление движка handlebars
 */
 const express = require("express");
+const app = express();
+
+
+app.use("/rest/main",function(request,response){
+    response.send("Hello from REST main");
+});
+app.use("/rest/paws", function(request, response){    
+    response.send("Hello from REST paws");
+});
+app.use("/rest/feed", function(request, response){     
+    response.send("Hello from REST feed");
+});
+app.use("/rest/cats", function(request, response){      
+    response.send("Hello from REST cats");
+});
+
+app.use("/rest",function(request, response){
+    response.send("Hello from REST");
+});
+
+
+
+/*
+* Все файлы из папки sources отдаются номинально
+* тут лежат css,js,img
+*/
+app.use("/sources", express.static(__dirname + "/sources"));
+
+
+
 const expressHbs = require("express-handlebars");
 const hbs = require("hbs");
-const app = express();
 
 app.set("view engine", "hbs");
 
@@ -26,53 +55,11 @@ app.set("view engine","hbs");
 hbs.registerPartials(__dirname + "/views/partials");
 
 
-/*
-* Обработка запросов
-*/
-app.use("/contact", function(request, response){
-      
-    response.render("contact", {
-        title: "Мои контакты",
-        emailsVisible: true,
-        emails: ["gavgav@mycorp.com", "mioaw@mycorp.com"],
-        phone: "+1234567890"
-    });
-
-}); 
-
-/*
-* Все файлы из папки sources отдаются номинально
-* тут лежат css,js,img
-*/
-app.use("/sources", express.static(__dirname + "/sources"));
-
-app.use("/paws", function(request, response){      
-    response.render("paws.hbs",{
-        title: "Велюровая страничка"
-    });
-});
-app.use("/feed", function(request, response){      
-    response.render("feed.hbs",{
-        title: "Велюровая страничка"
-    });
-});
-app.use("/cats", function(request, response){      
-    response.render("cats.hbs",{
-        title: "Велюровая страничка"
-    });
-});
-
-
 app.use("/", function(request, response){      
     response.render("main.hbs",{
         title: "Велюровая страничка"
     });
 });
-
-app.use("/*",function(request, response){
-    response.send("Чатыряста чятыря.<br/> мб найдётся попоже");
-});
-
 
 /*
 *Запуск сервера
